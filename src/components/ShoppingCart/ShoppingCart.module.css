@@ -1,2 +1,4 @@
 .container {
+    width: -webkit-fill-available;
+    margin-right: 20px;
 }

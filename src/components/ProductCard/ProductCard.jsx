@@ -3,13 +3,19 @@ import Imagen from '../Imagen/Imagen';
 import styles from './ProductCard.module.css';
 
 export default function ProductCard({
+	id,
 	nombre,
 	url,
 	precio,
 	descripcion,
-	agregarProducto,
-	action,
+	cantidadDisponible,
+	addProduct,
+	productsCart,
 }) {
+	const isAdd = () => {
+		return productsCart.find(element => element.id === id);
+	};
+
 	return (
 		<div className={styles.card}>
 			<Imagen url={url} descripcion={descripcion} />
@@ -18,7 +24,8 @@ export default function ProductCard({
 				<p>💵${precio}</p>
 				{/* <button name='Agregar al Carrito' /> */}
 				<Button
-					action={() => action({ nombre, url, precio, descripcion })}
+					action={() => addProduct({ id, nombre, url, precio, descripcion, cantidadDisponible })}
+					isDisabled={isAdd()}
 					name='Agregar al Carrito'
 				/>
 			</div>
